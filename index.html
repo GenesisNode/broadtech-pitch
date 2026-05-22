@@ -40,7 +40,6 @@
   }
 
   .accent {
-    font-style: italic;
     font-weight: 500;
     color: var(--accent);
   }
@@ -123,8 +122,8 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    height: 56px;
-    padding: 0 28px;
+    height: 40px;
+    padding: 0 20px;
     border-radius: 999px;
     font-size: clamp(13px, 1vw, 16px);
     font-weight: 500;
@@ -203,11 +202,11 @@
   }
 
   .hero h1 {
-    font-size: clamp(48px, 7vw, 140px);
+    font-size: clamp(36px, 4.5vw, 56px);
     font-weight: 600;
-    line-height: 1.0;
-    letter-spacing: -0.04em;
-    max-width: 1400px;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    max-width: 58.333%;
   }
   .hero h1 .em {
     color: var(--muted);
@@ -500,7 +499,6 @@
     line-height: 1;
     letter-spacing: -0.05em;
     color: var(--accent);
-    font-style: italic;
     display: block;
   }
   .about-stat .label {
@@ -589,26 +587,38 @@
 
   /* ============== LOGOS ============== */
   .logos {
-    padding: 80px 0;
+    padding: 120px 0 120px;
     border-top: 1px solid var(--hairline);
     border-bottom: 1px solid var(--hairline);
+    background: var(--bg);
   }
-  .logos-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
+  .logos-header {
+    text-align: center;
     padding: 0 80px;
-    margin-bottom: 48px;
-    font-size: clamp(11px, 0.85vw, 14px);
-    font-weight: 500;
-    color: var(--muted);
-    letter-spacing: 0.16em;
+    margin-bottom: 80px;
   }
-  .logos-eyebrow::before {
-    content: "";
-    width: 28px;
-    height: 1px;
-    background: var(--muted);
+  .logos-header .num {
+    font-size: clamp(80px, 9vw, 180px);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: var(--text);
+    display: block;
+  }
+  .logos-header .caption {
+    display: block;
+    margin-top: 28px;
+    color: var(--muted);
+    font-size: clamp(13px, 1vw, 16px);
+    letter-spacing: 0.01em;
+    max-width: 460px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .logos-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
   }
   .logo-track {
     overflow: hidden;
@@ -621,6 +631,9 @@
     white-space: nowrap;
     animation: scroll-x 44s linear infinite;
     padding-right: 80px;
+  }
+  .logo-track-inner.reverse {
+    animation-direction: reverse;
   }
   .logo-item {
     display: inline-flex;
@@ -643,122 +656,219 @@
     text-transform: uppercase;
   }
 
-  /* ============== CASE STUDIES ============== */
+  /* ============== CASE STUDIES (definedvc style) ============== */
   .case-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 24px;
   }
   .case-card {
-    background: var(--bg-alt);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 24px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    transition: transform .25s ease, border-color .25s ease;
+    gap: 18px;
+    text-decoration: none;
+    color: inherit;
   }
-  .case-card:hover {
-    transform: translateY(-3px);
-    border-color: rgba(255,255,255,0.18);
+  .case-visual {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 0.790865;
+    background: #000;
+    transition: transform .35s ease;
   }
-  .case-thumb {
-    height: 240px;
-    border-radius: 10px;
-    background:
-      radial-gradient(ellipse 60% 50% at 30% 35%, rgba(168,210,204,0.18), transparent 65%),
-      linear-gradient(135deg, #1f1f25, #0e0e12);
-    border: 1px solid var(--hairline);
+  .case-card:hover .case-visual { transform: translateY(-3px); }
+  .case-bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .case-chips {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 90%;
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    z-index: 2;
+  }
+  .case-chip {
+    background: rgba(255,255,255,0.12);
+    -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: clamp(11px, 0.85vw, 13px);
+    font-weight: 500;
+    color: #fff;
+    white-space: nowrap;
+    letter-spacing: -0.01em;
+  }
+  .case-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    max-width: 38%;
+    max-height: 80px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 24px rgba(0,0,0,0.6));
+  }
+  .case-card p {
+    font-size: clamp(15px, 1.1vw, 18px);
+    color: var(--text);
+    line-height: 1.5;
+    margin: 0;
+    max-width: 52ch;
+    padding-left: 4px;
+  }
+
+  /* ============== TESTIMONIALS (lessestudio style) ============== */
+  .testimonials-section {
+    padding: 120px 80px;
+    background: var(--bg);
+  }
+  .testimonials-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #1a1a1d;
+    border-radius: 24px;
+    overflow: hidden;
+    height: 45vw;
+  }
+  .testimonials-left {
+    padding: 56px;
+    display: flex;
+    flex-direction: column;
+  }
+  .testimonials-badge {
+    display: inline-block;
+    width: fit-content;
+    background: #0a0a0c;
+    color: var(--muted);
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: clamp(11px, 0.85vw, 14px);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .testimonials-heading {
+    margin-top: 32px;
+    font-size: clamp(32px, 3vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    font-weight: 600;
+    max-width: 22ch;
+    color: var(--text);
+  }
+  .testimonials-heading .accent {
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .testimonials-cta {
+    margin-top: auto;
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    gap: 14px;
+    background: rgba(245, 241, 234, 0.85);
+    color: #0a0a0c;
+    padding: 14px 24px;
+    border-radius: 999px;
+    font-weight: 500;
+    font-size: clamp(13px, 1vw, 16px);
+    transition: background .2s ease, transform .2s ease, gap .25s ease;
+  }
+  .testimonials-cta:hover {
+    background: var(--text);
+    transform: scale(1.02);
+    gap: 18px;
+  }
+  .testimonials-cta svg {
+    flex-shrink: 0;
+  }
+
+  .testimonials-right {
+    padding: 20px;
     position: relative;
     overflow: hidden;
   }
-  .case-thumb::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
-    background-size: 24px 24px;
+  .testimonials-track-wrap {
+    height: 100%;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+            mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
   }
-  .case-meta {
-    display: flex;
-    gap: 14px;
-    font-size: clamp(11px, 0.85vw, 13px);
-    color: var(--dim);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-  .case-meta .dot {
-    display: inline-block;
-    width: 3px;
-    height: 3px;
-    background: var(--dim);
-    border-radius: 50%;
-    align-self: center;
-  }
-  .case-card h3 {
-    font-size: clamp(18px, 1.5vw, 28px);
-    font-weight: 500;
-    letter-spacing: -0.015em;
-    line-height: 1.25;
-  }
-  .case-card .read {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--accent);
-    font-size: clamp(13px, 1vw, 16px);
-    font-weight: 500;
-    margin-top: auto;
-    transition: gap .25s ease;
-  }
-  .case-card .read:hover { gap: 16px; }
-
-  /* ============== TESTIMONIALS ============== */
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-  .quote-card {
-    background: var(--bg-alt);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 32px;
+  .testimonials-track {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    min-height: 280px;
+    animation: scroll-y 36s linear infinite;
   }
-  .quote-mark {
-    font-size: clamp(44px, 4vw, 72px);
-    line-height: 0.6;
-    color: var(--accent);
-    font-style: italic;
-    font-weight: 500;
-    height: 24px;
+  @keyframes scroll-y {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-50%); }
   }
-  .quote-card p {
-    font-size: clamp(15px, 1.2vw, 22px);
+  .t-quote {
+    background: #0a0a0c;
+    border-radius: 14px;
+    padding: 56px 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .t-quote p {
+    font-size: clamp(14px, 1.05vw, 18px);
     line-height: 1.55;
     color: var(--text);
-    flex: 1;
+    max-width: 44ch;
+    margin: 0;
   }
-  .quote-card .author {
-    border-top: 1px solid var(--hairline);
-    padding-top: 18px;
+  .t-author {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .t-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #5a8580);
+    display: grid;
+    place-items: center;
+    font-weight: 600;
+    color: #0a0a0c;
+    font-size: 16px;
+    flex-shrink: 0;
+    letter-spacing: 0;
+  }
+  .t-author-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 4px;
+  }
+  .t-author-info strong {
     font-size: clamp(13px, 1vw, 16px);
-  }
-  .quote-card .author strong {
     font-weight: 500;
-    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
     color: var(--text);
   }
-  .quote-card .author span {
+  .t-author-info span {
+    font-size: clamp(11px, 0.85vw, 13px);
     color: var(--muted);
-    font-size: clamp(12px, 0.9vw, 14px);
   }
 
   /* ============== FOOTER ============== */
@@ -860,12 +970,15 @@
     .section-head { grid-template-columns: 1fr; gap: 32px; }
     .about-grid { grid-template-columns: 1fr; gap: 48px; }
     .services-grid { grid-template-columns: repeat(2, 1fr); }
-    .case-grid { grid-template-columns: 1fr; }
-    .testimonials-grid { grid-template-columns: 1fr; }
+    .case-grid { grid-template-columns: repeat(2, 1fr); }
+    .testimonials-section { padding: 100px 32px; }
+    .testimonials-card { grid-template-columns: 1fr; height: auto; }
+    .testimonials-left { padding: 40px; }
+    .testimonials-right { height: 560px; padding: 16px; }
     .footer { padding: 64px 32px 24px; }
     .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
     .footer-brand { grid-column: 1 / -1; }
-    .logos-eyebrow { padding: 0 32px; }
+    .logos-header { padding: 0 32px; margin-bottom: 60px; }
   }
 
   @media (max-width: 720px) {
@@ -877,10 +990,12 @@
     .feature-grid { grid-template-columns: 1fr; }
     .section { padding: 80px 20px; }
     .services-grid { grid-template-columns: 1fr; }
+    .case-grid { grid-template-columns: 1fr; gap: 32px; }
     .footer { padding: 56px 20px 24px; }
     .footer-top { grid-template-columns: 1fr; gap: 32px; padding-bottom: 40px; }
     .footer-bottom { flex-direction: column; gap: 16px; align-items: flex-start; }
-    .logos-eyebrow { padding: 0 20px; }
+    .logos-header { padding: 0 20px; margin-bottom: 48px; }
+    .logos { padding: 80px 0; }
     .diff-list li { grid-template-columns: 1fr; gap: 8px; }
   }
 </style>
@@ -919,8 +1034,8 @@
       <div class="hero-tag">YOUR TRUSTED ODOO EXPERTS</div>
 
       <h1>
-        We are a <span class="accent">certified</span> Odoo partner
-        <span class="em">helping you implement, customize &amp; scale enterprise ERP.</span>
+        Certified Odoo partner
+        <span class="em">helping businesses implement and scale ERP.</span>
       </h1>
 
       <div class="hero-meta">
@@ -1228,24 +1343,47 @@
 
   <!-- ============== PARTNER LOGOS ============== -->
   <section class="logos">
-    <div class="logos-eyebrow">DISCOVER OUR CREATIVE PARTNERS</div>
-    <div class="logo-track">
-      <div class="logo-track-inner">
-        <span class="logo-item">RUBIX <span class="tag">Enable · Innovate · Grow</span></span>
-        <span class="logo-item">realcom <span class="tag">IT &amp; Voice Services</span></span>
-        <span class="logo-item">ECF</span>
-        <span class="logo-item">INFOPARI <span class="tag">Inspire · Collaborate · Innovate</span></span>
-        <span class="logo-item">OCA <span class="tag">Odoo Community Association</span></span>
-        <span class="logo-item">RUBIX <span class="tag">Enable · Innovate · Grow</span></span>
-        <span class="logo-item">realcom <span class="tag">IT &amp; Voice Services</span></span>
-        <span class="logo-item">ECF</span>
-        <span class="logo-item">INFOPARI <span class="tag">Inspire · Collaborate · Innovate</span></span>
-        <span class="logo-item">OCA <span class="tag">Odoo Community Association</span></span>
+    <div class="logos-header">
+      <span class="num">120+</span>
+      <span class="caption">team members powering Odoo across global markets</span>
+    </div>
+
+    <div class="logos-rows">
+      <!-- Row 1: scrolls left → right (default) -->
+      <div class="logo-track">
+        <div class="logo-track-inner">
+          <span class="logo-item">RUBIX <span class="tag">Enable · Innovate · Grow</span></span>
+          <span class="logo-item">realcom <span class="tag">IT &amp; Voice Services</span></span>
+          <span class="logo-item">ECF</span>
+          <span class="logo-item">INFOPARI <span class="tag">Inspire · Collaborate · Innovate</span></span>
+          <span class="logo-item">OCA <span class="tag">Odoo Community Association</span></span>
+          <span class="logo-item">RUBIX <span class="tag">Enable · Innovate · Grow</span></span>
+          <span class="logo-item">realcom <span class="tag">IT &amp; Voice Services</span></span>
+          <span class="logo-item">ECF</span>
+          <span class="logo-item">INFOPARI <span class="tag">Inspire · Collaborate · Innovate</span></span>
+          <span class="logo-item">OCA <span class="tag">Odoo Community Association</span></span>
+        </div>
+      </div>
+
+      <!-- Row 2: scrolls right → left (reverse) -->
+      <div class="logo-track">
+        <div class="logo-track-inner reverse">
+          <span class="logo-item">OCA <span class="tag">Odoo Community Association</span></span>
+          <span class="logo-item">INFOPARI <span class="tag">Inspire · Collaborate · Innovate</span></span>
+          <span class="logo-item">ECF</span>
+          <span class="logo-item">realcom <span class="tag">IT &amp; Voice Services</span></span>
+          <span class="logo-item">RUBIX <span class="tag">Enable · Innovate · Grow</span></span>
+          <span class="logo-item">OCA <span class="tag">Odoo Community Association</span></span>
+          <span class="logo-item">INFOPARI <span class="tag">Inspire · Collaborate · Innovate</span></span>
+          <span class="logo-item">ECF</span>
+          <span class="logo-item">realcom <span class="tag">IT &amp; Voice Services</span></span>
+          <span class="logo-item">RUBIX <span class="tag">Enable · Innovate · Grow</span></span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============== CASE STUDIES ============== -->
+  <!-- ============== CASE STUDIES (tubik style) ============== -->
   <section class="section">
     <div class="section-head">
       <div class="section-eyebrow">FEATURED CASE STUDIES</div>
@@ -1255,86 +1393,141 @@
     </div>
 
     <div class="case-grid">
-      <article class="case-card">
-        <div class="case-thumb"></div>
-        <div class="case-meta">
-          <span>February 4, 2026</span>
-          <span class="dot"></span>
-          <span>ERP</span>
+      <a href="https://www.zyphra.com/" target="_blank" rel="noopener" class="case-card">
+        <div class="case-visual">
+          <video class="case-bg-video" src="assets/zyphra.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <div class="case-chips">
+            <span class="case-chip">Next-gen Compute</span>
+            <span class="case-chip">Agent Economy</span>
+            <span class="case-chip">Scalable Infrastructure</span>
+          </div>
+          <img class="case-logo" src="assets/zyphra.png" alt="Zyphra logo" loading="lazy">
         </div>
-        <h3>Odoo Implementation Auditing</h3>
-        <a class="read" href="#">Read case study <span>→</span></a>
-      </article>
+        <p>Full stack for open superintelligence — foundation models, inference platform and superagent.</p>
+      </a>
 
-      <article class="case-card">
-        <div class="case-thumb"></div>
-        <div class="case-meta">
-          <span>February 4, 2026</span>
-          <span class="dot"></span>
-          <span>Mobile</span>
+      <a href="https://foundation.bot/" target="_blank" rel="noopener" class="case-card">
+        <div class="case-visual">
+          <video class="case-bg-video" src="assets/foundation.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <div class="case-chips">
+            <span class="case-chip">Physical AI</span>
+          </div>
+          <img class="case-logo" src="assets/foundation.svg" alt="Foundation logo" loading="lazy">
         </div>
-        <h3>Mobile App Development</h3>
-        <a class="read" href="#">Read case study <span>→</span></a>
-      </article>
+        <p>Physics action model to address labor shortage.</p>
+      </a>
 
-      <article class="case-card">
-        <div class="case-thumb"></div>
-        <div class="case-meta">
-          <span>February 4, 2026</span>
-          <span class="dot"></span>
-          <span>Audit</span>
+      <a href="https://mythic.ai/" target="_blank" rel="noopener" class="case-card">
+        <div class="case-visual">
+          <video class="case-bg-video" src="assets/mythic.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <div class="case-chips">
+            <span class="case-chip">Next-gen Compute</span>
+            <span class="case-chip">Physical AI</span>
+          </div>
+          <img class="case-logo" src="assets/mythic.svg" alt="Mythic logo" loading="lazy">
         </div>
-        <h3>Odoo Implementation Auditing</h3>
-        <a class="read" href="#">Read case study <span>→</span></a>
-      </article>
+        <p>Pioneering power-efficient AI processors.</p>
+      </a>
 
-      <article class="case-card">
-        <div class="case-thumb"></div>
-        <div class="case-meta">
-          <span>February 4, 2026</span>
-          <span class="dot"></span>
-          <span>Consulting</span>
+      <a href="https://variational.ai/" target="_blank" rel="noopener" class="case-card">
+        <div class="case-visual">
+          <video class="case-bg-video" src="assets/variational.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <div class="case-chips">
+            <span class="case-chip">Engineered Science</span>
+          </div>
+          <img class="case-logo" src="assets/variational.svg" alt="Variational logo" loading="lazy">
         </div>
-        <h3>Business Consultation</h3>
-        <a class="read" href="#">Read case study <span>→</span></a>
-      </article>
+        <p>Foundation model for small molecule drug discovery.</p>
+      </a>
     </div>
   </section>
 
-  <!-- ============== TESTIMONIALS ============== -->
-  <section class="section alt">
-    <div class="section-head">
-      <div class="section-eyebrow">UNLOCKING YOUR BUSINESS POTENTIAL</div>
-      <h2>Customer stories about <span class="accent">our Odoo solutions.</span></h2>
-    </div>
+  <!-- ============== TESTIMONIALS (lessestudio style) ============== -->
+  <section class="testimonials-section">
+    <div class="testimonials-card">
+      <div class="testimonials-left">
+        <span class="testimonials-badge">Testimonials</span>
+        <h2 class="testimonials-heading">What our clients say about <span class="accent">working with us.</span></h2>
+        <a href="#" class="testimonials-cta">
+          Let's work together
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
 
-    <div class="testimonials-grid">
-      <article class="quote-card">
-        <span class="quote-mark">"</span>
-        <p>BroadTech IT Solutions revitalized our brand with their creative design and strategic expertise. Their team was collaborative and committed, bringing our vision to fruition.</p>
-        <div class="author">
-          <strong>Mary Jones</strong>
-          <span>Laketown, OH</span>
-        </div>
-      </article>
+      <div class="testimonials-right">
+        <div class="testimonials-track-wrap">
+          <div class="testimonials-track">
+            <article class="t-quote">
+              <p>"BroadTech IT Solutions revitalized our brand with their creative design and strategic expertise. Their team was collaborative and committed, bringing our vision to fruition."</p>
+              <div class="t-author">
+                <div class="t-avatar">MJ</div>
+                <div class="t-author-info">
+                  <strong>Mary Jones</strong>
+                  <span>Customer, Laketown OH</span>
+                </div>
+              </div>
+            </article>
 
-      <article class="quote-card">
-        <span class="quote-mark">"</span>
-        <p>BroadTech IT Solutions revitalized our brand with cutting-edge strategies and beautiful designs. Their committed approach and creativity made a huge difference for our audience.</p>
-        <div class="author">
-          <strong>Andy Walker</strong>
-          <span>Omaha, NE</span>
-        </div>
-      </article>
+            <article class="t-quote">
+              <p>"BroadTech IT Solutions revitalized our brand with cutting-edge strategies and beautiful designs. Their committed approach and creativity made a huge difference for our audience."</p>
+              <div class="t-author">
+                <div class="t-avatar">AW</div>
+                <div class="t-author-info">
+                  <strong>Andy Walker</strong>
+                  <span>Customer, Omaha NE</span>
+                </div>
+              </div>
+            </article>
 
-      <article class="quote-card">
-        <span class="quote-mark">"</span>
-        <p>BroadTech IT Solutions expertise in digital marketing boosted our visibility and engagement. Their innovative strategies and dedication truly set them apart.</p>
-        <div class="author">
-          <strong>Nicole Brown</strong>
-          <span>Austin, TX</span>
+            <article class="t-quote">
+              <p>"BroadTech IT Solutions expertise in digital marketing boosted our visibility and engagement. Their innovative strategies and dedication truly set them apart."</p>
+              <div class="t-author">
+                <div class="t-avatar">NB</div>
+                <div class="t-author-info">
+                  <strong>Nicole Brown</strong>
+                  <span>Customer, Austin TX</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Duplicated for seamless loop -->
+            <article class="t-quote">
+              <p>"BroadTech IT Solutions revitalized our brand with their creative design and strategic expertise. Their team was collaborative and committed, bringing our vision to fruition."</p>
+              <div class="t-author">
+                <div class="t-avatar">MJ</div>
+                <div class="t-author-info">
+                  <strong>Mary Jones</strong>
+                  <span>Customer, Laketown OH</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-quote">
+              <p>"BroadTech IT Solutions revitalized our brand with cutting-edge strategies and beautiful designs. Their committed approach and creativity made a huge difference for our audience."</p>
+              <div class="t-author">
+                <div class="t-avatar">AW</div>
+                <div class="t-author-info">
+                  <strong>Andy Walker</strong>
+                  <span>Customer, Omaha NE</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="t-quote">
+              <p>"BroadTech IT Solutions expertise in digital marketing boosted our visibility and engagement. Their innovative strategies and dedication truly set them apart."</p>
+              <div class="t-author">
+                <div class="t-avatar">NB</div>
+                <div class="t-author-info">
+                  <strong>Nicole Brown</strong>
+                  <span>Customer, Austin TX</span>
+                </div>
+              </div>
+            </article>
+          </div>
         </div>
-      </article>
+      </div>
     </div>
   </section>
 

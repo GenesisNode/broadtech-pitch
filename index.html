@@ -681,7 +681,7 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
-    max-width: 64%;
+    max-width: 100%;
   }
   .service-card h3 {
     font-size: clamp(40px, 5vw, 72px);
@@ -714,26 +714,6 @@
     margin: 0;
     max-width: 56ch;
   }
-  .service-card-visual {
-    position: absolute;
-    top: 56px;
-    right: 56px;
-    width: clamp(140px, 18vw, 280px);
-    height: clamp(140px, 18vw, 280px);
-    border-radius: 50%;
-    background:
-      radial-gradient(circle at 50% 28%, var(--card-accent, var(--accent)) 0%, var(--card-bg, #131318) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
-  }
-  .service-card-visual svg {
-    width: 48%;
-    height: 48%;
-    color: rgba(255,255,255,0.92);
-  }
-
   /* Per-card colors — darker shades that blend into the page bg */
   .service-card-1 { --card-bg: #0e1612; --card-accent: #9ed450; --card-glow: rgba(158,212,80,0.10); }
   .service-card-2 { --card-bg: #110e1c; --card-accent: #a594dc; --card-glow: rgba(165,148,220,0.10); }
@@ -1190,7 +1170,6 @@
     .services-grid { grid-template-columns: repeat(2, 1fr); }
     .service-card { padding: 40px; min-height: 540px; }
     .service-card-content { max-width: 100%; }
-    .service-card-visual { width: clamp(110px, 22vw, 180px); height: clamp(110px, 22vw, 180px); top: 32px; right: 32px; }
     .case-grid { grid-template-columns: repeat(2, 1fr); }
     .testimonials-section { padding: 100px 32px; }
     .testimonials-card { grid-template-columns: 1fr; height: auto; }
@@ -1212,8 +1191,7 @@
     .feature-grid { grid-template-columns: 1fr; }
     .section { padding: 80px 20px; }
     .services-grid { grid-template-columns: 1fr; }
-    .service-card { position: relative; top: 0; padding: 32px 24px; padding-top: 180px; min-height: auto; }
-    .service-card-visual { width: 120px; height: 120px; top: 32px; right: 24px; }
+    .service-card { position: relative; top: 0; padding: 32px 24px; min-height: auto; }
     .case-grid { grid-template-columns: 1fr; gap: 32px; }
     .footer { padding: 56px 20px 24px; }
     .footer-top { grid-template-columns: 1fr; gap: 32px; padding-bottom: 40px; }
@@ -1560,13 +1538,6 @@
 
     <div class="services-stack">
       <article class="service-card service-card-1">
-        <div class="service-card-visual">
-          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-            <path d="M50 18 L50 55"/>
-            <path d="M22 70 L50 55"/>
-            <path d="M78 70 L50 55"/>
-          </svg>
-        </div>
         <div class="service-card-content">
           <h3>ERP Implementation</h3>
           <div class="service-tags">
@@ -1581,12 +1552,6 @@
       </article>
 
       <article class="service-card service-card-2">
-        <div class="service-card-visual">
-          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-            <path d="M38 22 L20 50 L38 78"/>
-            <path d="M62 22 L80 50 L62 78"/>
-          </svg>
-        </div>
         <div class="service-card-content">
           <h3>Custom Development</h3>
           <div class="service-tags">
@@ -1601,12 +1566,6 @@
       </article>
 
       <article class="service-card service-card-3">
-        <div class="service-card-visual">
-          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="30"/>
-            <circle cx="50" cy="50" r="6" fill="currentColor" stroke="none"/>
-          </svg>
-        </div>
         <div class="service-card-content">
           <h3>Business Automation</h3>
           <div class="service-tags">
@@ -1621,11 +1580,6 @@
       </article>
 
       <article class="service-card service-card-4">
-        <div class="service-card-visual">
-          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15 60 Q32 30 50 60 T85 60"/>
-          </svg>
-        </div>
         <div class="service-card-content">
           <h3>Odoo.sh &amp; Hosting</h3>
           <div class="service-tags">
@@ -1640,14 +1594,6 @@
       </article>
 
       <article class="service-card service-card-5">
-        <div class="service-card-visual">
-          <svg viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="22" r="6"/>
-            <circle cx="78" cy="50" r="6"/>
-            <circle cx="50" cy="78" r="6"/>
-            <circle cx="22" cy="50" r="6"/>
-          </svg>
-        </div>
         <div class="service-card-content">
           <h3>Consulting &amp; Training</h3>
           <div class="service-tags">
@@ -1662,13 +1608,6 @@
       </article>
 
       <article class="service-card service-card-6">
-        <div class="service-card-visual">
-          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg">
-            <path d="M50 18 L50 82"/>
-            <path d="M22 34 L78 66"/>
-            <path d="M78 34 L22 66"/>
-          </svg>
-        </div>
         <div class="service-card-content">
           <h3>Support &amp; Maintenance</h3>
           <div class="service-tags">

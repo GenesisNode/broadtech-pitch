@@ -368,23 +368,22 @@
     font-weight: 500;
     letter-spacing: -0.01em;
   }
-  .marquee-inner > span,
-  .marquee-inner > .star {
-    flex-shrink: 0;
+  .marquee-inner {
+    gap: 56px;
+    align-items: center;
   }
   .marquee-inner > span {
-    padding: 0 28px;
+    flex-shrink: 0;
+    padding: 0;
     display: inline-flex;
     align-items: center;
   }
-  .marquee-inner .star {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 1em;
-    height: 1em;
+  .marquee-inner > span.star {
+    width: 1.3em;
+    height: 1.3em;
     color: var(--accent);
-    opacity: 0.35;
+    opacity: 0.4;
+    justify-content: center;
   }
   .marquee-inner .star svg {
     width: 100%;

@@ -714,13 +714,12 @@
     margin: 0;
     max-width: 56ch;
   }
-  /* Per-card colors — darker shades that blend into the page bg */
-  .service-card-1 { --card-bg: #0e1612; --card-accent: #9ed450; --card-glow: rgba(158,212,80,0.10); }
-  .service-card-2 { --card-bg: #110e1c; --card-accent: #a594dc; --card-glow: rgba(165,148,220,0.10); }
-  .service-card-3 { --card-bg: #1a130a; --card-accent: #d89858; --card-glow: rgba(216,152,88,0.10); }
-  .service-card-4 { --card-bg: #081414; --card-accent: #6fc5b2; --card-glow: rgba(111,197,178,0.10); }
-  .service-card-5 { --card-bg: #170a10; --card-accent: #d87a98; --card-glow: rgba(216,122,152,0.10); }
-  .service-card-6 { --card-bg: #08111c; --card-accent: #5a9dc5; --card-glow: rgba(90,157,197,0.10); }
+  /* Single palette across all 6 cards — matching dhero's reference (dark forest bg + lime accent) */
+  .service-card {
+    --card-bg: #1a2814;
+    --card-accent: #bdee63;
+    --card-glow: rgba(189,238,99,0.10);
+  }
 
   /* === Legacy services rules kept for any other usage === */
   .services-grid {

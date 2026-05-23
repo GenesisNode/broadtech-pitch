@@ -23,6 +23,103 @@
 
   html { scroll-behavior: smooth; }
 
+  /* ============== PASSWORD GATE ============== */
+  body.pwd-locked { overflow: hidden; }
+  .pwd-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #08080a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .pwd-gate.hidden { display: none; }
+  .pwd-card {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    text-align: center;
+    padding: 48px 36px;
+    border-radius: 20px;
+    background: #131318;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .pwd-mark {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: var(--text);
+    color: #08080a;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: -0.04em;
+  }
+  .pwd-card h2 {
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  .pwd-card .sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: -16px;
+  }
+  .pwd-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .pwd-input {
+    width: 100%;
+    height: 48px;
+    padding: 0 18px;
+    border-radius: 999px;
+    background: #0a0a0c;
+    border: 1px solid rgba(255,255,255,0.10);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 15px;
+    outline: none;
+    transition: border-color .2s ease;
+  }
+  .pwd-input::placeholder { color: var(--dim); }
+  .pwd-input:focus { border-color: var(--accent); }
+  .pwd-submit {
+    width: 100%;
+    height: 48px;
+    border-radius: 999px;
+    background: var(--text);
+    color: #08080a;
+    border: none;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+    transition: transform .15s ease, background .2s ease;
+  }
+  .pwd-submit:hover { transform: translateY(-1px); }
+  .pwd-error {
+    color: #ff6b6b;
+    font-size: 13px;
+    min-height: 18px;
+    margin-top: 4px;
+  }
+  .pwd-foot {
+    font-size: 12px;
+    color: var(--dim);
+    margin-top: 4px;
+    letter-spacing: 0.08em;
+  }
+
   body {
     background: var(--bg);
     color: var(--text);
@@ -1001,6 +1098,67 @@
 </style>
 </head>
 <body>
+
+  <!-- ============== PASSWORD GATE ============== -->
+  <div class="pwd-gate" id="pwdGate" aria-modal="true" role="dialog">
+    <div class="pwd-card">
+      <span class="pwd-mark">b</span>
+      <h2>BroadTech Preview</h2>
+      <p class="sub">Enter password to view</p>
+      <form class="pwd-form" id="pwdForm" autocomplete="off">
+        <input class="pwd-input" id="pwdInput" type="password" placeholder="Password" autofocus required />
+        <button class="pwd-submit" type="submit">Unlock</button>
+        <span class="pwd-error" id="pwdError"></span>
+      </form>
+      <span class="pwd-foot">PITCH PREVIEW · CONFIDENTIAL</span>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const PWD_HASH = "ed9a347bb70a6d88cfabfe2b57582ed37e4926505bd040c76d8f80f07e62268c";
+      const gate = document.getElementById('pwdGate');
+      const form = document.getElementById('pwdForm');
+      const input = document.getElementById('pwdInput');
+      const errEl = document.getElementById('pwdError');
+
+      async function sha256(s) {
+        const buf = new TextEncoder().encode(s);
+        const h = await crypto.subtle.digest('SHA-256', buf);
+        return Array.from(new Uint8Array(h)).map(b => b.toString(16).padStart(2, '0')).join('');
+      }
+
+      function unlock() {
+        gate.classList.add('hidden');
+        document.body.classList.remove('pwd-locked');
+      }
+
+      // If already unlocked in this browser, skip the gate
+      try {
+        if (sessionStorage.getItem('broadtech_unlocked') === '1') {
+          unlock();
+          return;
+        }
+      } catch (e) {}
+
+      document.body.classList.add('pwd-locked');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const v = input.value.trim();
+        if (!v) return;
+        const h = await sha256(v);
+        if (h === PWD_HASH) {
+          try { sessionStorage.setItem('broadtech_unlocked', '1'); } catch (e) {}
+          unlock();
+        } else {
+          errEl.textContent = 'Incorrect password';
+          input.value = '';
+          input.focus();
+        }
+      });
+    })();
+  </script>
 
   <!-- ============== NAVBAR ============== -->
   <nav class="nav">

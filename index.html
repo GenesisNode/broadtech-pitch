@@ -972,7 +972,7 @@
   .footer {
     padding: 80px 80px 32px;
     background: transparent;
-    border-top: 1px solid var(--hairline);
+    border-top: none;
     position: relative;
     overflow: hidden;
   }
@@ -984,6 +984,8 @@
     object-fit: cover;
     z-index: 0;
     pointer-events: none;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 8%, #000 28%, #000 100%);
+            mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 8%, #000 28%, #000 100%);
   }
   .footer-bg-overlay {
     position: absolute;
@@ -991,6 +993,8 @@
     background: rgba(0, 0, 0, 0.55);
     z-index: 1;
     pointer-events: none;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 8%, #000 28%, #000 100%);
+            mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 8%, #000 28%, #000 100%);
   }
   .footer > .footer-top,
   .footer > .footer-bottom {

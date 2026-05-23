@@ -971,16 +971,38 @@
   /* ============== FOOTER ============== */
   .footer {
     padding: 80px 80px 32px;
-    background: var(--bg);
+    background: transparent;
     border-top: 1px solid var(--hairline);
     position: relative;
+    overflow: hidden;
+  }
+  .footer-bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .footer-bg-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .footer > .footer-top,
+  .footer > .footer-bottom {
+    position: relative;
+    z-index: 2;
   }
   .footer-top {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1.2fr;
     gap: 48px;
     padding-bottom: 56px;
-    border-bottom: 1px solid var(--hairline);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
   }
   .footer-brand {
     display: flex;
@@ -1053,24 +1075,6 @@
   }
   .footer-bottom .socials a { color: var(--muted); }
   .footer-bottom .socials a:hover { color: var(--accent); }
-  .footer-decoration {
-    margin-top: 48px;
-    width: calc(100% + 160px);
-    margin-left: -80px;
-    margin-right: -80px;
-    margin-bottom: -32px;
-    height: clamp(180px, 22vw, 320px);
-    overflow: hidden;
-    position: relative;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
-            mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
-  }
-  .footer-decoration-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
 
   /* ============== RESPONSIVE ============== */
   @media (max-width: 1100px) {
@@ -1095,7 +1099,6 @@
     .footer { padding: 64px 32px 24px; }
     .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
     .footer-brand { grid-column: 1 / -1; }
-    .footer-decoration { width: calc(100% + 64px); margin-left: -32px; margin-right: -32px; margin-bottom: -24px; }
     .logos-header { padding: 0 32px; margin-bottom: 60px; }
   }
 
@@ -1112,7 +1115,6 @@
     .footer { padding: 56px 20px 24px; }
     .footer-top { grid-template-columns: 1fr; gap: 32px; padding-bottom: 40px; }
     .footer-bottom { flex-direction: column; gap: 16px; align-items: flex-start; }
-    .footer-decoration { width: calc(100% + 40px); margin-left: -20px; margin-right: -20px; margin-bottom: -24px; height: clamp(140px, 30vw, 220px); -webkit-mask-image: none; mask-image: none; }
     .logos-header { padding: 0 20px; margin-bottom: 48px; }
     .logos { padding: 80px 0; }
     .diff-list li { grid-template-columns: 1fr; gap: 8px; }
@@ -1713,6 +1715,11 @@
 
   <!-- ============== FOOTER ============== -->
   <footer class="footer">
+    <video class="footer-bg-video" autoplay muted loop playsinline preload="metadata">
+      <source src="assets/footer-glow.mp4" type="video/mp4">
+    </video>
+    <div class="footer-bg-overlay"></div>
+
     <div class="footer-top">
       <div class="footer-brand">
         <div class="name">
@@ -1765,11 +1772,6 @@
       </div>
     </div>
 
-    <div class="footer-decoration" aria-hidden="true">
-      <video class="footer-decoration-video" autoplay muted loop playsinline preload="metadata">
-        <source src="assets/footer-glow.mp4" type="video/mp4">
-      </video>
-    </div>
   </footer>
 
 </body>

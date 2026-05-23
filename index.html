@@ -968,90 +968,69 @@
     color: var(--muted);
   }
 
-  /* ============== FOOTER ============== */
+  /* ============== FOOTER (backgrounds.supply style) ============== */
   .footer {
-    padding: 80px 80px 32px;
-    background: var(--bg);
+    background: #000;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 60px;
+    gap: 24px;
     border-top: 1px solid var(--hairline);
   }
-  .footer-top {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1.2fr;
-    gap: 48px;
-    padding-bottom: 56px;
-    border-bottom: 1px solid var(--hairline);
-  }
   .footer-brand {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  .footer-brand .name {
+    flex: none;
+    width: 230px;
     display: inline-flex;
     align-items: center;
     gap: 10px;
     font-weight: 600;
-    font-size: clamp(20px, 1.6vw, 28px);
-    letter-spacing: -0.025em;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    color: #fff;
+    text-decoration: none;
   }
-  .footer-brand .name .mark {
+  .footer-brand .mark {
     width: 32px;
     height: 32px;
-    border-radius: 9px;
-    background: var(--text);
-    color: var(--bg);
+    border-radius: 8px;
+    background: #fff;
+    color: #000;
     display: inline-grid;
     place-items: center;
     font-weight: 700;
     font-size: 18px;
+    letter-spacing: -0.04em;
   }
-  .footer-brand p {
-    color: var(--muted);
-    font-size: clamp(14px, 1.05vw, 17px);
-    line-height: 1.6;
-    max-width: 42ch;
-  }
-  .footer-col h5 {
-    font-size: clamp(11px, 0.85vw, 13px);
-    font-weight: 500;
-    color: var(--muted);
-    letter-spacing: 0.18em;
-    margin-bottom: 22px;
-  }
-  .footer-col ul {
-    list-style: none;
+  .footer-links {
+    flex: 1 0 0;
     display: flex;
-    flex-direction: column;
-    gap: 14px;
-    font-size: clamp(14px, 1.05vw, 17px);
-  }
-  .footer-col a { color: var(--text); opacity: 0.85; }
-  .footer-col a:hover { color: var(--accent); opacity: 1; }
-  .footer-col .contact-line {
-    color: var(--muted);
-    font-size: clamp(13px, 1vw, 16px);
-    line-height: 1.6;
-  }
-  .footer-col .contact-line strong {
-    font-weight: 500;
-    color: var(--text);
-    display: block;
-    margin-bottom: 2px;
-  }
-  .footer-bottom {
-    padding-top: 28px;
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    font-size: clamp(12px, 0.9vw, 14px);
-    color: var(--muted);
+    justify-content: center;
+    gap: 24px;
+    padding: 6px 0;
+    list-style: none;
   }
-  .footer-bottom .socials {
-    display: flex;
-    gap: 22px;
+  .footer-links a {
+    color: rgba(255,255,255,0.5);
+    font-size: 14px;
+    line-height: 130%;
+    font-weight: 400;
+    transition: color .2s ease;
   }
-  .footer-bottom .socials a { color: var(--muted); }
-  .footer-bottom .socials a:hover { color: var(--accent); }
+  .footer-links a:hover { color: rgba(255,255,255,0.9); }
+  .footer-credit {
+    flex: none;
+    width: 168px;
+    text-align: right;
+    color: rgba(255,255,255,0.3);
+    font-size: 14px;
+    line-height: 130%;
+  }
+  .footer-credit .accent-name {
+    color: var(--accent);
+  }
 
   /* ============== RESPONSIVE ============== */
   @media (max-width: 1100px) {
@@ -1073,8 +1052,10 @@
     .testimonials-left { padding: 40px; }
     .testimonials-right { height: 560px; padding: 16px; }
     .footer { padding: 64px 32px 24px; }
-    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
-    .footer-brand { grid-column: 1 / -1; }
+    .footer { flex-direction: column; gap: 32px; padding: 40px; }
+    .footer-brand, .footer-credit { width: auto; }
+    .footer-credit { text-align: center; }
+    .footer-links { flex: none; width: 100%; gap: 48px; }
     .logos-header { padding: 0 32px; margin-bottom: 60px; }
   }
 
@@ -1088,9 +1069,8 @@
     .section { padding: 80px 20px; }
     .services-grid { grid-template-columns: 1fr; }
     .case-grid { grid-template-columns: 1fr; gap: 32px; }
-    .footer { padding: 56px 20px 24px; }
-    .footer-top { grid-template-columns: 1fr; gap: 32px; padding-bottom: 40px; }
-    .footer-bottom { flex-direction: column; gap: 16px; align-items: flex-start; }
+    .footer { padding: 32px 20px; gap: 24px; }
+    .footer-links { flex-direction: column; gap: 16px; align-items: flex-start; }
     .logos-header { padding: 0 20px; margin-bottom: 48px; }
     .logos { padding: 80px 0; }
     .diff-list li { grid-template-columns: 1fr; gap: 8px; }
@@ -1689,59 +1669,23 @@
     </div>
   </section>
 
-  <!-- ============== FOOTER ============== -->
+  <!-- ============== FOOTER (backgrounds.supply style) ============== -->
   <footer class="footer">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <div class="name">
-          <span class="mark">b</span>
-          <span>BroadTech</span>
-        </div>
-        <p>BroadTech IT Solutions provides end-to-end ERP and digital solutions designed to streamline workflows and drive smarter business decisions.</p>
-      </div>
+    <a href="/" class="footer-brand">
+      <span class="mark">b</span>
+      <span>BroadTech</span>
+    </a>
 
-      <div class="footer-col">
-        <h5>NAVIGATE</h5>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Career</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </div>
+    <nav class="footer-links">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Career</a>
+      <a href="#">Blog</a>
+      <a href="mailto:contact@broadtech-innovations.com">Contact</a>
+    </nav>
 
-      <div class="footer-col">
-        <h5>SERVICES</h5>
-        <ul>
-          <li><a href="#">Odoo Implementation</a></li>
-          <li><a href="#">Custom Development</a></li>
-          <li><a href="#">Business Automation</a></li>
-          <li><a href="#">Odoo.sh Hosting</a></li>
-          <li><a href="#">Consulting &amp; Training</a></li>
-          <li><a href="#">Support &amp; Maintenance</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h5>CONTACT</h5>
-        <p class="contact-line"><strong>contact@broadtech-innovations.com</strong></p>
-        <p class="contact-line">Fifth Floor, Phase 2, Carnival Infopark,<br/>Kakkanad, Kerala 682042, India</p>
-        <p class="contact-line"><strong>UAE</strong> +971 585570977</p>
-        <p class="contact-line"><strong>Canada</strong> +1 437 974 9652</p>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <span>© 2026 BroadTech IT Solutions Pvt Ltd. All Rights Reserved.</span>
-      <div class="socials">
-        <a href="#">Facebook</a>
-        <a href="#">Instagram</a>
-        <a href="#">LinkedIn</a>
-        <a href="#">Pinterest</a>
-      </div>
-    </div>
+    <p class="footer-credit">© 2026 <span class="accent-name">BroadTech</span></p>
   </footer>
 
 </body>

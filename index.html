@@ -714,12 +714,13 @@
     margin: 0;
     max-width: 56ch;
   }
-  /* Single palette across all 6 cards — matching dhero's reference (dark forest bg + lime accent) */
-  .service-card {
-    --card-bg: #1a2814;
-    --card-accent: #bdee63;
-    --card-glow: rgba(189,238,99,0.10);
-  }
+  /* Per-card palettes — dhero's exact color tokens, -12 for bg, -8/-9 for accent */
+  .service-card-1 { --card-bg: #37401c; --card-accent: #bdee63; --card-glow: rgba(189,238,99,0.10); } /* brand (lime) */
+  .service-card-2 { --card-bg: #402060; --card-accent: #be93e4; --card-glow: rgba(190,147,228,0.10); } /* purple */
+  .service-card-3 { --card-bg: #113264; --card-accent: #5eb1ef; --card-glow: rgba(94,177,239,0.10); } /* blue */
+  .service-card-4 { --card-bg: #0d3d38; --card-accent: #53b9ab; --card-glow: rgba(83,185,171,0.10); } /* teal */
+  .service-card-5 { --card-bg: #64172b; --card-accent: #e592a3; --card-glow: rgba(229,146,163,0.10); } /* ruby */
+  .service-card-6 { --card-bg: #582d1d; --card-accent: #ec9455; --card-glow: rgba(236,148,85,0.10); } /* orange */
 
   /* === Legacy services rules kept for any other usage === */
   .services-grid {
